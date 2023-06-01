@@ -150,7 +150,7 @@
                                 <!--begin::Item-->
                                 <div class="d-flex flex-stack">
                                     <!--begin::Section-->
-                                    <a href="{{route('setting')}}" class="text-primary fw-semibold fs-6 me-2">Add Account Details</a>
+                                    <a href="#" class="text-primary fw-semibold fs-6 me-2">Add Account Details</a>
                                     <!--end::Section-->
 
                                     <!--begin::Action-->

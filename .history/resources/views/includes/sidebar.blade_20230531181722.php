@@ -97,18 +97,30 @@
              <span class="menu-link"><span class="menu-icon"><i class="ki-duotone ki-abstract-25 fs-2"><span class="path1"></span><span class="path2"></span></i></span><span class="menu-title">Contacts</span></span>
             <!--begin::Menu item-->
             <div class="menu-item">
-                <a href="{{route('add_contact')}}" class="menu-link py-3 {{ set_active_route('add_contact') }}">
+                <a href="{{route('setting')}}" class="menu-link py-3 {{ set_active_route('setting') }}">
                     <span class="menu-bullet">
                         <span class="bullet bullet-dot"></span>
                     </span>
-                    <span class="menu-title">Add Contacts</span>
+                    <span class="menu-title">Add </span>
 
                 </a>
             </div>
             <!--end::Menu item-->
             </div>
 
-                               
+                                <!--begin:Menu item-->
+                                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                    <!--begin:Menu link--><span class="menu-link"><span class="menu-icon"><i class="ki-duotone ki-abstract-25 fs-2"><span class="path1"></span><span class="path2"></span></i></span><span class="menu-title">Contacts</span><span class="menu-arrow"></span></span><!--end:Menu link--><!--begin:Menu sub-->
+                                    <div class="menu-sub menu-sub-accordion"><!--begin:Menu item-->
+                                        <div class="menu-item"><!--begin:Menu link--><a class="menu-link  {{ set_active_route('contact') }}" href="{{route('contact')}}"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Getting Started</span></a><!--end:Menu link-->
+                                        </div><!--end:Menu item--><!--begin:Menu item-->
+                                        <div class="menu-item"><!--begin:Menu link--><a class="menu-link  {{ set_active_route('add_contact') }}" href="{{route('add_contact')}}"><span class="menu-bullet"><span class="bullet bullet-dot"></span></span><span class="menu-title">Add Contact</span></a><!--end:Menu link--></div>
+                                        <!--end:Menu item-->
+                                        <!--begin:Menu item-->
+
+                                        <!--end:Menu item-->
+                                    </div><!--end:Menu sub-->
+                                </div><!--end:Menu item-->
                             </div>
                             <!--end::Menu-->
                         </div>

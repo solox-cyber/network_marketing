@@ -150,7 +150,7 @@
                                 <!--begin::Item-->
                                 <div class="d-flex flex-stack">
                                     <!--begin::Section-->
-                                    <a href="{{route('setting')}}" class="text-primary fw-semibold fs-6 me-2">Add Account Details</a>
+                                    <a href="#" class="text-primary fw-semibold fs-6 me-2">Add Account Details</a>
                                     <!--end::Section-->
 
                                     <!--begin::Action-->
@@ -260,28 +260,28 @@
                                 </div>
                                 <!--end::Chart-->
 
-
                                 <!--begin::Labels-->
                                 <div class="d-flex flex-column content-justify-center flex-row-fluid">
                                     <!--begin::Label-->
                                     <div class="d-flex fw-semibold align-items-center">
                                         <!--begin::Bullet-->
-                                        <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+                                        <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
                                         <!--end::Bullet-->
 
                                         <!--begin::Label-->
-                                        <div class="text-gray-500 flex-grow-1 me-4">Total Number of Registered Users </div>
+                                        <div class="text-gray-500 flex-grow-1 me-4">Total Number of Registered Contacts</div>
                                         <!--end::Label-->
 
                                         <!--begin::Stats-->
-                                        <div class="fw-bolder text-gray-700 text-xxl-end">{{$userCount }}</div>
+                                        <div class="fw-bolder text-gray-700 text-xxl-end">{{$contactCount }}</div>
                                         <!--end::Stats-->
                                     </div>
                                     <!--end::Label-->
 
 
+
                                     <!--begin::Label-->
-                                    <div class="d-flex fw-semibold align-items-center my-3">
+                                    <div class="d-flex fw-semibold align-items-center">
                                         <!--begin::Bullet-->
                                         <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
                                         <!--end::Bullet-->
@@ -292,22 +292,6 @@
 
                                         <!--begin::Stats-->
                                         <div class=" fw-bolder text-gray-700 text-xxl-end">{{$totalCount}}</div>
-                                        <!--end::Stats-->
-                                    </div>
-                                    <!--end::Label-->
-
-                                    <!--begin::Label-->
-                                    <div class="d-flex fw-semibold align-items-center">
-                                        <!--begin::Bullet-->
-                                        <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
-                                        <!--end::Bullet-->
-
-                                        <!--begin::Label-->
-                                        <div class="text-gray-500 flex-grow-1 me-4">Number of Uploaded Contacts</div>
-                                        <!--end::Label-->
-
-                                        <!--begin::Stats-->
-                                        <div class="fw-bolder text-gray-700 text-xxl-end">{{$contactCount }}</div>
                                         <!--end::Stats-->
                                     </div>
                                     <!--end::Label-->

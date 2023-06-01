@@ -154,9 +154,9 @@
                                     <!--end::Section-->
 
                                     <!--begin::Action-->
-                                    <button type="button" class="btn btn-icon btn-sm h-auto btn-color-gray-400 btn-active-color-primary justify-content-end">
+                                    <a type="button" href="" class="btn btn-icon btn-sm h-auto btn-color-gray-400 btn-active-color-primary justify-content-end">
                                         <i class="ki-duotone ki-exit-right-corner fs-2"><span class="path1"></span><span class="path2"></span></i>
-                                    </button>
+                                    </a>
                                     <!--end::Action-->
                                 </div>
                                 <!--end::Item-->

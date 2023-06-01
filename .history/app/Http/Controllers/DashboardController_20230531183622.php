@@ -28,14 +28,13 @@ class DashboardController extends Controller
 
 
 
-        // $contactCount = Contact::count();
+        $contactCount = Contact::count();
+
+        $userCount = User::count();
+
         // Retrieve the authenticated user
         $user = Auth::user();
 
-
-        $contactCount = $user->contacts()->count();
-
-        $userCount = User::count();
 
 
         // $contactCountDate = Contact::where('created_at', '>', $user->created_at)->count();
@@ -71,7 +70,7 @@ class DashboardController extends Controller
         } elseif ($level == 2 || $totalCount >= 17 && $totalCount <= 63) {
             $pay = 100000 * 16;
             $commissionPercentage = 8;
-        } elseif ($level == 3 && $totalCount == 64) {
+        }elseif ($level == 3 && $totalCount == 64) {
             $pay = 100000 * $totalCount;
             $commissionPercentage = 6;
         } elseif ($level >= 3 || $totalCount >= 65 && $totalCount <= 255) {
@@ -84,21 +83,21 @@ class DashboardController extends Controller
 
         $WalletAmountGross = $pay * ($commissionPercentage / 100);
 
-        // Get the total withdraw request count
-        $totalWithdrawRequests = WalletStatement::where('user_id', $user->id)
-            ->where('type', 'withdrawal')->count();
+   // Get the total withdraw request count
+$totalWithdrawRequests = WalletStatement::where('user_id', $user->id)
+->where('type', 'withdrawal')->count();
 
-        $paymentStatus = WalletStatement::where('user_id', $user->id)
-            ->where('type', 'withdrawal')
-            ->where('payment_status', 'approved')
-            ->sum('amount');
+$paymentStatus = WalletStatement::where('user_id', $user->id)
+->where('type', 'withdrawal')
+->where('payment_status', 'approved')
+->sum('amount');
 
-        // Check if the payment status is verified
-        if ($paymentStatus > 0) {
-            $WalletAmount = $WalletAmountGross - $paymentStatus;
-        } else {
-            $WalletAmount = $WalletAmountGross;
-        }
+// Check if the payment status is verified
+if ($paymentStatus > 0) {
+$WalletAmount = $WalletAmountGross - $paymentStatus;
+} else {
+$WalletAmount = $WalletAmountGross;
+}
 
 
         $user->level = $level;
@@ -179,28 +178,27 @@ class DashboardController extends Controller
         return view('overview');
     }
 
-    public function payoutGate(Request $request)
-    {
-        // Retrieve the authenticated user
-        $user = Auth::user();
+    public function payoutGate(Request $request){
+      // Retrieve the authenticated user
+    $user = Auth::user();
 
-        // Get the amount from the request
-        $amount = $request->input('amount');
+    // Get the amount from the request
+    $amount = $request->input('amount');
 
-        // Create a new WalletStatement instance
-        $walletStatement = new WalletStatement();
+    // Create a new WalletStatement instance
+    $walletStatement = new WalletStatement();
 
-        // Set the values for the columns
-        $walletStatement->user_id = $user->id;
-        $walletStatement->amount = $amount;
-        $walletStatement->type = 'withdrawal'; // Enclose in single quotes to treat as a string
-        $walletStatement->created_at = now();
+    // Set the values for the columns
+    $walletStatement->user_id = $user->id;
+    $walletStatement->amount = $amount;
+    $walletStatement->type = 'withdrawal'; // Enclose in single quotes to treat as a string
+    $walletStatement->created_at = now();
 
-        // Save the entry to the database
-        $walletStatement->save();
+    // Save the entry to the database
+    $walletStatement->save();
 
-        // Redirect to the dashboard or return a response
-        return redirect()->route('statement')->with('success', 'Withdrawal recorded successfully.');
+    // Redirect to the dashboard or return a response
+    return redirect()->route('statement')->with('success', 'Withdrawal recorded successfully.');
     }
     public function statement()
     {
@@ -243,7 +241,7 @@ class DashboardController extends Controller
         } elseif ($level == 2 || $totalCount >= 17 && $totalCount <= 63) {
             $pay = 100000 * 16;
             $commissionPercentage = 8;
-        } elseif ($level == 3 && $totalCount == 64) {
+        }elseif ($level == 3 && $totalCount == 64) {
             $pay = 100000 * $totalCount;
             $commissionPercentage = 6;
         } elseif ($level >= 3 || $totalCount >= 65 && $totalCount <= 255) {
@@ -260,7 +258,7 @@ class DashboardController extends Controller
 
         $statements = WalletStatement::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
-        return view('statement', compact('statements', 'WalletAmountGross', 'balance'));
+        return view('statement', compact('statements','WalletAmountGross','balance'));
     }
 
     public function payout()
@@ -268,7 +266,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         $email =   $user->email;
         $walletAmount = $user->wallet_amount;
-        return view('withdraw', compact('email', 'walletAmount'));
+        return view('withdraw',compact('email','walletAmount'));
     }
 
     public function setting()

@@ -150,7 +150,7 @@
                                 <!--begin::Item-->
                                 <div class="d-flex flex-stack">
                                     <!--begin::Section-->
-                                    <a href="{{route('setting')}}" class="text-primary fw-semibold fs-6 me-2">Add Account Details</a>
+                                    <a href="#" class="text-primary fw-semibold fs-6 me-2">Add Account Details</a>
                                     <!--end::Section-->
 
                                     <!--begin::Action-->
@@ -281,7 +281,7 @@
 
 
                                     <!--begin::Label-->
-                                    <div class="d-flex fw-semibold align-items-center my-3">
+                                    <div class="d-flex fw-semibold align-items-center">
                                         <!--begin::Bullet-->
                                         <div class="bullet w-8px h-3px rounded-2 me-3" style="background-color: #E4E6EF"></div>
                                         <!--end::Bullet-->
