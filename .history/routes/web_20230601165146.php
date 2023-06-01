@@ -63,18 +63,18 @@ Route::post('/dashboard/password/reset', [DashboardController::class, 'passwordS
 
 
 // Admin login routes
-// Route::prefix('admin')->group(function () {
-// Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
-// Route::post('/login', [AdminController::class, 'login']);
-// Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-// });
+Route::prefix('admin')->group(function () {
+Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/login', [AdminController::class, 'login']);
+Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+});
 
 
 
 // Admin dashboard route
-Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/setting', [AdminDashboardController::class, 'setting'])->name('setting');
+Route::middleware('auth','admin')->prefix('admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    // Route::get('/setting', [DashboardController::class, 'setting'])->name('setting');
 });
 
 

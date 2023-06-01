@@ -73,7 +73,7 @@ Route::post('/dashboard/password/reset', [DashboardController::class, 'passwordS
 
 // Admin dashboard route
 Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::get('/setting', [AdminDashboardController::class, 'setting'])->name('setting');
 });
 

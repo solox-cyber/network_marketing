@@ -19,7 +19,6 @@ class Admin
         if(Auth()->user()->usertype == 'admin'){
             return $next($request);
         }
-        abort(401);
 
     }
 }
