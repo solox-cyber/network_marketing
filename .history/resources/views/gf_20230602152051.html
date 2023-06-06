@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Form Field</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <form id="myForm">
+        <div id="formFields">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name[]" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password[]" required>
+            </div>
+        </div>
+        <button type="button" onclick="addFormField()">Add Field</button>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function addFormField() {
+            var formFieldsContainer = $('#formFields');
+            var newField = $('<div>');
+            newField.html(
+                '<label for="name">Name:</label> <input type="text" name="name[]" required><label for="password">Password:</label><input type="password" name="password[]" required>'
+            );
+            formFieldsContainer.append(newField);
+        }
+    </script>
+</body>
+</html>
+
+
+<div class="row row-cols-1 row-cols-sm-2 rol-cols-md-1 row-cols-lg-2">
+
+    <div class="col">
+
+        <div class="fv-row mb-7">
+
+            <label class="fs-6 fw-semibold form-label mt-3">
+                <span class="required">Name</span>
+
+                <span class="ms-1" data-bs-toggle="tooltip" title="Enter the contact's email.">
+                    <i class="ki-duotone ki-information fs-7"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> </span>
+            </label>
+
+            <input type="name" class="form-control form-control-solid" name="name" value="" />
+
+        </div>
+
+
+    </div>
+
+    <div class="col">
+
+        <div class="fv-row mb-7">
+
+            <label class="fs-6 fw-semibold form-label mt-3">
+                <span>Phone</span>
+
+                <span class="ms-1" data-bs-toggle="tooltip" title="Enter the contact's phone number (optional).">
+                    <i class="ki-duotone ki-information fs-7"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i> </span>
+            </label>
+
+            <input type="text" class="form-control form-control-solid" name="phone_number" value="" />
+
+        </div>
+
+    </div>
+
+</div>
+<!--end::Row-->
