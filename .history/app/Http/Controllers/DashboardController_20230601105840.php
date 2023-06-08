@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SalesRep;
 use Carbon\Carbon;
 use App\Models\Contact;
 use App\Models\User;
@@ -212,6 +213,24 @@ class DashboardController extends Controller
         // Redirect to the dashboard or return a response
         return redirect()->route('statement')->with('success', 'Withdrawal recorded successfully.');
     }
+
+
+    public function salesStore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'country' => 'required',
+        ]);
+
+        SalesRep::create($validatedData);
+
+        // Redirect or perform any other actions after storing the sales representative
+
+        return redirect()->route('admin.salesrep')->with('success', 'Sales representative created successfully');
+    }
+
     public function statement()
     {
         $contactCount = Contact::count();
