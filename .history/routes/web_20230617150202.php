@@ -68,7 +68,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/users/search', [DashboardController::class, 'searchUsers'])->name('users.search');
     Route::get('/salesRep/search', [DashboardController::class, 'searchSales'])->name('searchSales');
     Route::get('/contact/search', [DashboardController::class, 'searchContact'])->name('searchContact');
-    Route::get('/invitation/search', [DashboardController::class, 'searchInvite'])->name('searchInvite');
 });
 
 

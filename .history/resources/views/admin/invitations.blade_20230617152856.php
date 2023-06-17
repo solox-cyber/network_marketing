@@ -77,7 +77,7 @@
                             <!--begin::Search-->
                             <div class="d-flex align-items-center position-relative my-2">
                                 <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"><span class="path1"></span><span class="path2"></span></i>
-                                <form action="{{ route('searchInvite') }}" method="GET">
+                                <form action="{{ route('searchContact') }}" method="GET">
             <input type="text" name="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Contact" />
         </form>
                             </div>

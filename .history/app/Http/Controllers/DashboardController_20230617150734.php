@@ -625,35 +625,21 @@ class DashboardController extends Controller
 
     public function searchContact(Request $request)
     {
-        $salesReps = SalesRep::all();
-
         $search = $request->input('search');
 
-        // Perform the search query for contacts
-        $contacts = Contact::with('user')
-            ->where(function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%");
-            })
-            ->get();
 
-        return view('admin.contactsearch-results', compact('contacts', 'salesReps'));
-    }
+        // Perform the search query for sales representatives
+        $contacts = Contact::where(function ($query) use ($search) {
+            $query->where('name', 'like', "%$search%");
+        })->get();
 
 
-    public function searchInvite(Request $request)
-    {
-        $salesReps = SalesRep::all();
+        // foreach ($salesReps as $salesRep) {
+        //     $assignedContactsCount = Contact::where('sales_rep_id', $salesRep->id)->count();
+        //     $salesRep->assignedContactsCount = $assignedContactsCount;
+        // }
 
-        $search = $request->input('search');
-
-        // Perform the search query for contacts
-        $contacts = Contact::with('user', 'salesRep')
-            ->where(function ($query) use ($search) {
-                $query->where('name', 'like', "%$search%");
-            })
-            ->get();
-
-        return view('admin.invitations-result', compact('contacts', 'salesReps'));
+        return view('admin.contactsearch-results', compact('contacts'));
     }
 
 
@@ -1142,7 +1128,7 @@ class DashboardController extends Controller
     public function showAdminContact($id)
     {
         if (auth()->user()->usertype === 'admin') {
-            $contact = Contact::with('user', 'salesRep')->find($id);
+            $contact = Contact::with(['user', 'salesRep'])->find($id);
 
             if (!$contact) {
                 abort(404); // or handle the error in a different way

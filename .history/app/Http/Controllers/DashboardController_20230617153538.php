@@ -636,7 +636,7 @@ class DashboardController extends Controller
             })
             ->get();
 
-        return view('admin.contactsearch-results', compact('contacts', 'salesReps'));
+        return view('admin.contactsearch-results', compact('contacts','salesReps'));
     }
 
 
@@ -647,13 +647,13 @@ class DashboardController extends Controller
         $search = $request->input('search');
 
         // Perform the search query for contacts
-        $contacts = Contact::with('user', 'salesRep')
+        $contacts = Contact::with('user','salesRep')
             ->where(function ($query) use ($search) {
                 $query->where('name', 'like', "%$search%");
             })
             ->get();
 
-        return view('admin.invitations-result', compact('contacts', 'salesReps'));
+        return view('admin.-results', compact('contacts','salesReps'));
     }
 
 
@@ -1142,7 +1142,7 @@ class DashboardController extends Controller
     public function showAdminContact($id)
     {
         if (auth()->user()->usertype === 'admin') {
-            $contact = Contact::with('user', 'salesRep')->find($id);
+            $contact = Contact::with(['user', 'salesRep'])->find($id);
 
             if (!$contact) {
                 abort(404); // or handle the error in a different way
