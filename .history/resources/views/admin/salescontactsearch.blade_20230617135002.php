@@ -1,0 +1,242 @@
+<!-- begin::Search -->
+<div class="col-lg-6 col-xl-6">
+    <!--begin::Contacts-->
+    <div class="card card-flush" id="kt_contacts_list">
+        <!--begin::Card header-->
+        <div class="card-header pt-7" id="kt_contacts_list_header">
+            <!--begin::Form-->
+            <form class="d-flex align-items-center position-relative w-100 m-0" method="GET" action="{{ route('salescontact.search') }}" autocomplete="off">
+                <!--begin::Icon-->
+                @csrf
+                <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 ms-5 translate-middle-y"><span class="path1"></span><span class="path2"></span></i> <!--end::Icon-->
+
+                <!--begin::Input-->
+                <input type="text" class="form-control form-control-solid ps-13" id="ssearchInput" name="search" value="" placeholder="Search contacts" />
+                <!--end::Input-->
+            </form>
+            <!--end::Form-->
+            <form action="{{ route('contacts.assign') }}" method="POST">
+                                @csrf
+
+                                <div class="d-flex align-items-center">
+                                    <!-- Select -->
+                                    <select name="sales_rep_id" id="sales_rep_id" class="form-select form-select-transparent text-dark fs-7 lh-1 fw-bold py-0 ps-3 w-auto" data-control="select2" data-hide-search="true" data-dropdown-css-class="w-150px" data-placeholder="Select Sales Rep" data-kt-table-widget-4="filter_status">
+
+                                        <option value=""></option>
+                                        @foreach ($salesReps as $salesRep)
+                                        <option value="{{ $salesRep->id }}">{{ $salesRep->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <!-- End Select -->
+
+                                    <!-- Button -->
+                                    <button type="submit" class="btn btn-primary ms-3 flex-grow-1">Assign Contacts</button>
+                                    <!-- End Button -->
+                                </div>
+
+        </div>
+        <!--end::Card header-->
+
+        <!--begin::Card body-->
+        <div class="card-body pt-5" id="kt_contacts_list_body">
+            <div style="height: 500px; overflow-y: auto;">
+
+                @foreach($salescontacts as $salescontact)
+                <div class="d-flex flex-stack py-4">
+                    <div class="d-flex align-items-center w-100">
+                        <div class="ms-4 d-flex align-items-center flex-fill">
+                            <a href="{{ $salescontact->link }}" class="fs-6 fw-bold text-gray-900 text-hover-primary mb-2 me-2 flex-fill">{{ $salescontact->name }}</a>
+                            <div class="fw-semibold fs-7 text-muted flex-shrink-0">
+                                @if($salescontact->sales_rep_id)
+                                <!-- Contact already assigned to a sales rep -->
+                                <form method="POST" action="{{ route('sales-reps.contacts.assign', ['salesRepId' => $salesRep->id, 'contactId' => $salescontact->id]) }}">
+                                    @csrf
+                                    <input type="hidden" name="contact_id" value="{{ $salescontact->id }}">
+                                    <button class="btn btn-sm btn-danger me-2">Reassign</button>
+                                    @else
+                                    <form method="POST" action="{{ route('sales-reps.contacts.assign', ['salesRepId' => $salesRep->id, 'contactId' => $salescontact->id]) }}">
+                                        @csrf
+                                        <input type="hidden" name="contact_id" value="{{ $salescontact->id }}">
+                                        <button type="submit" class="btn btn-sm btn-primary me-2 assign-contact">Assign</button>
+                                    </form>
+
+                                    @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <!--end::Card body-->
+    </div>
+    <!--end::Contacts-->
+</div>
+<!-- end::Search -->
+
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+
+
+<!--begin::Content container-->
+<div id="kt_app_content_container" class="app-container  container-xxl ">
+    <!--begin::Card-->
+    <div class="card">
+        <!--begin::Card header-->
+        <div class="card-header border-0 pt-6">
+            <!--begin::Card title-->
+            <div class="card-title">
+                <!--begin::Search-->
+                <div class="d-flex align-items-center position-relative my-2">
+                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"><span class="path1"></span><span class="path2"></span></i>
+                    <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user" />
+                </div>
+                <!--end::Search-->
+
+
+                <form action="{{ route('contacts.assign') }}" method="POST">
+                    @csrf
+
+                    <div class="d-flex align-items-center">
+                        <!-- Select -->
+                        <select name="sales_rep_id" id="sales_rep_id" class="form-select form-select-transparent text-dark fs-7 lh-1 fw-bold py-0 ps-3 w-auto" data-control="select2" data-hide-search="true" data-dropdown-css-class="w-150px" data-placeholder="Select Sales Rep" data-kt-table-widget-4="filter_status">
+
+                            <option value=""></option>
+                            @foreach ($salesReps as $salesRep)
+                            <option value="{{ $salesRep->id }}">{{ $salesRep->name }}</option>
+                            @endforeach
+                        </select>
+                        <!-- End Select -->
+
+                        <!-- Button -->
+                        <button type="submit" class="btn btn-primary ms-3 flex-grow-1">Assign Contacts</button>
+                        <!-- End Button -->
+                    </div>
+
+
+            </div>
+            <!--end::Card title-->
+
+
+
+            <!--begin::Card body-->
+            <div class="card-body py-4">
+
+                <!--begin::Table-->
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                    <thead>
+
+
+                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                            <th class="w-10px pe-2">
+                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" />
+
+                                </div>
+                            </th>
+
+                            <th class="min-w-125px">Name</th>
+                            <th class="min-w-125px">Email</th>
+                            <th class="min-w-125px">Phone Number </th>
+                            <th class="min-w-125px">Upline </th>
+                            <th class="min-w-125px">Sales Rep </th>
+                            <th class="min-w-125px">Date Created</th>
+                            <th class="text-end min-w-100px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 fw-semibold">
+                        @foreach ($contacts as $contact)
+                        <tr>
+                            <td>
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" name="contact_ids[]" type="checkbox" value="{{ $contact->id }}" />
+                                </div>
+                            </td>
+
+
+                            <td>
+                                {{ $contact->name }}
+                            </td>
+                            <td>
+                                {{ $contact->email }}
+                            </td>
+                            <td>
+                                {{ $contact->phone }}
+                            </td>
+                            <td>
+                                @if ($contact->user)
+                                {{ $contact->user->name }}
+                                @else
+                                N/A
+                                @endif
+                            </td>
+
+
+
+                            <td>
+                                @if ($contact->salesRep)
+                                {{ $contact->salesRep->name }}
+                                @else
+                                N/A
+                                @endif
+                            </td>
+
+
+
+
+
+
+                            <td>
+                                {{ date('d M Y, h:i a', strtotime($contact->created_at)) }}
+                            </td>
+
+                            <td class="text-end">
+                                <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    Actions
+                                    <i class="ki-duotone ki-down fs-5 ms-1"></i> </a>
+                                <!--begin::Menu-->
+                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="{{ route('contact.show', ['id' => $contact->id]) }}" class="menu-link px-3">
+                                            View
+                                        </a>
+
+                                    </div>
+                                    <!--end::Menu item-->
+
+                                    <!--begin::Menu item-->
+                                    <!-- <div class="menu-item px-3">
+
+                                        <form action="{{ route('contact.destroy', ['id' => $contact->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="menu-link px-3" style="background-color: transparent; border-color: transparent;">
+                                                Delete
+                                            </button>
+                                        </form>
+
+                                    </div> -->
+                                    <!--end::Menu item-->
+                                </div>
+                                <!--end::Menu-->
+                            </td>
+
+                        </tr>
+
+
+
+                        @endforeach
+                    </tbody>
+                </table>
+                <!--end::Table-->
+</form>
+            </div>
+            <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+    </div>
+    <!--end::Content container-->
+</div>
+<!--end::Content-->
