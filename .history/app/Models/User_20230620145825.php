@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Notifications\CustomVerifyEmailNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,10 +10,6 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Config;
-
-
 
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -64,10 +59,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->deactivated_at === NULL; // Assuming 'status' is a column in your 'users' table
     }
 
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new CustomVerifyEmailNotification);
-    }
+    public function verificationUrl()
+{
+    return URL::temporarySignedRoute(
+        'verification.verify',
+        now()->addMinutes(Config::get('auth.verification.expire', 60)),
+        [
+            'id' => $this->getKey(),
+            'hash' => sha1($this->getEmailForVerification()),
+        ]
+    );
+}
 
 
 

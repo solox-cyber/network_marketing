@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Config;
 
 
 
-
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;

@@ -128,6 +128,7 @@
                                     <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
                                         <span>Serial Number </span>
                                         <span>{{ $serial_number }}</span>
+                                        {{}}
                                     </div>
 
                                     <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">

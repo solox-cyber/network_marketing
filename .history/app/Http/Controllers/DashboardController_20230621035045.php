@@ -259,89 +259,72 @@ class DashboardController extends Controller
                 $user = Auth::user();
 
 
-                 // retrieve the course details of the user
-                 $course = $user->service;
-                 $courseDetails = Course::where('id', $course)->get();
+                $contactCount = $user->contacts()->count();
 
-                 foreach ($courseDetails as $course) {
-                     // $course_logo = $course->course_logo;
-                     $course_name = $course->course_name;
-                     $about_course = $course->about_course;
-                     // $course_syllabus = $course->course_syllabus;
-                 }
+                $userCount = User::count();
 
 
+                // $contactCountDate = Contact::where('created_at', '>', $user->created_at)->count();
+                $userCountDate = User::where('created_at', '>', $user->created_at)->count();
 
-                 $contactCount = $user->contacts()->count();
+                $totalCount = $userCountDate;
 
-                 $userCount = User::where('usertype', 'user')->count();
-
-                 $course = $user->created_at;
-
-
-
-                 // $contactCountDate = Contact::where('created_at', '>', $user->created_at)->count();
+                // Assuming you have a variable $value that represents the user's value
 
 
-                 $totalCount = User::where('usertype', 'user')
-                     ->where('id', '>', $user->id)
-                     ->count();
+                $sequence = [4, 16, 64, 256, 1024, 4096, 16384, 65536];
+                $level = 0;
 
-                 // $totalCount = $userCountDate;
+                foreach ($sequence as $number) {
+                    if ($totalCount >= $number) {
+                        $level++;
+                    } else {
+                        break; // No need to continue checking the rest of the sequence
+                    }
+                }
+                if ($level == 0 && $totalCount < 4) {
+                    $pay = 0;
+                    $commissionPercentage = 0;
+                } elseif ($level == 1 && $totalCount == 4) {
+                    $pay = 100000 * $totalCount;
+                    $commissionPercentage = 10;
+                } elseif ($level == 1 || $totalCount >= 5 && $totalCount <= 15) {
+                    $pay = 100000 * 4;
+                    $commissionPercentage = 10;
+                } elseif ($level == 2 && $totalCount == 16) {
+                    $pay = 100000 * $totalCount;
+                    $commissionPercentage = 8;
+                } elseif ($level == 2 || $totalCount >= 17 && $totalCount <= 63) {
+                    $pay = 100000 * 16;
+                    $commissionPercentage = 8;
+                } elseif ($level == 3 && $totalCount == 64) {
+                    $pay = 100000 * $totalCount;
+                    $commissionPercentage = 6;
+                } elseif ($level >= 3 || $totalCount >= 65 && $totalCount <= 255) {
+                    $pay = 100000 * $totalCount;
+                    $commissionPercentage = 6;
+                } elseif ($level == 4 && $totalCount == 256) {
+                    $pay = 100000 * $totalCount;
+                    $commissionPercentage = 4;
+                }
 
-                 // Assuming you have a variable $value that represents the user's value
+                $WalletAmountGross = $pay * ($commissionPercentage / 100);
 
+                // Get the total withdraw request count
+                $totalWithdrawRequests = WalletStatement::where('user_id', $user->id)
+                    ->where('type', 'withdrawal')->count();
 
-                 // $sequence = [4, 16, 64, 256, 1024, 4096, 16384, 65536];
-                 $level = 0;
+                $paymentStatus = WalletStatement::where('user_id', $user->id)
+                    ->where('type', 'withdrawal')
+                    ->where('payment_status', 'Paid')
+                    ->sum('amount');
 
-
-                 $N = Auth::id();
-                 // $level = 0;
-                 // $commissionPercentage = 0;
-                 $pay = 100000;
-
-                 if ($totalCount == 0 && $totalCount < ($N * 4 + 1)) {
-                     $level = 0;
-                     $commissionPercentage = 0;
-                     $WalletAmountGross = $pay * ($commissionPercentage / 100);
-                 } elseif ($totalCount >= ($N * 4 + 1) && $totalCount < ($N * 16 + 5)) {
-                     $level = 1;
-                     $commissionPercentage = 10;
-                     $WalletAmountGross = ($pay * ($commissionPercentage / 100)) * 4;
-                 } elseif ($totalCount >= ($N * 16 + 5) && $totalCount < ($N * 64 + 21)) {
-                     $level = 2;
-                     $commissionPercentage = 8;
-                     $WalletAmountGross = ($pay * ($commissionPercentage / 100)) * 16;
-                 } elseif ($totalCount >= ($N * 64 + 21) && $totalCount < ($N * 256 + 85)) {
-                     $level = 3;
-                     $commissionPercentage = 6;
-                     $WalletAmountGross = ($pay * ($commissionPercentage / 100)) * 64;
-                 } elseif ($totalCount >= ($N * 256 + 85)) {
-                     $level = 4;
-                     $commissionPercentage = 4;
-                     $WalletAmountGross = ($pay * ($commissionPercentage / 100)) * 256;
-                 }
-
-
-
-
-                 // Get the total withdraw request count
-                 $totalWithdrawRequests = WalletStatement::where('user_id', $user->id)
-                     ->where('type', 'withdrawal')->count();
-
-                 $paymentStatus = WalletStatement::where('user_id', $user->id)
-                     ->where('type', 'withdrawal')
-                     ->where('payment_status', 'Paid')
-                     ->sum('amount');
-
-                 // Check if the payment status is verified
-                 if ($paymentStatus > 0) {
-                     $WalletAmount = $WalletAmountGross - $paymentStatus;
-                 } else {
-                     $WalletAmount = $WalletAmountGross;
-                 }
-
+                // Check if the payment status is verified
+                if ($paymentStatus > 0) {
+                    $WalletAmount = $WalletAmountGross - $paymentStatus;
+                } else {
+                    $WalletAmount = $WalletAmountGross;
+                }
             }
 
             $walletStatement = WalletStatement::find($id);

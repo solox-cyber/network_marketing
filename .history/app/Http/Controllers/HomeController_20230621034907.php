@@ -60,8 +60,8 @@ class HomeController extends Controller
                 // $totalCount = $userCountDate;
 
                 $totalCount = User::where('usertype', 'user')
-                    ->where('id', '>', $user->id)
-                    ->count();
+    ->where('id', '>', $user->id)
+    ->count();
 
                 // Assuming you have a variable $value that represents the user's value
 

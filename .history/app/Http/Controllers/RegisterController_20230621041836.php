@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Mail;
 use Laravel\Fortify\Contracts\VerifyEmailViewResponse;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\CustomVerifyEmailNotification;
-
-
 
 class RegisterController extends Controller
 {
@@ -62,20 +59,20 @@ class RegisterController extends Controller
 
 
 
-        if ($user instanceof MustVerifyEmail && !$user->hasVerifiedEmail()) {
+        if ($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()) {
 
-            //     $user->sendEmailVerificationNotification();
+        //     $user->sendEmailVerificationNotification();
 
-            //     return redirect()->route('verification.notice');
+        //     return redirect()->route('verification.notice');
 
-            // Send email notification with the serial number and verification URL
-            $user->sendEmailVerificationNotification();
+         // Send email notification with the serial number and verification URL
+    $user->sendEmailVerificationNotification();
         }
 
 
 
 
         // Redirect the user to the desired location
-        return redirect()->route('dashboard');
+         return redirect()->route('dashboard');
     }
 }

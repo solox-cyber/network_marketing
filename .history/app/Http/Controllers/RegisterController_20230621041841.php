@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Mail;
 use Laravel\Fortify\Contracts\VerifyEmailViewResponse;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\CustomVerifyEmailNotification;
-
-
 
 class RegisterController extends Controller
 {

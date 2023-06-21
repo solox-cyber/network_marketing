@@ -56,12 +56,13 @@ class HomeController extends Controller
 
 
                 // $contactCountDate = Contact::where('created_at', '>', $user->created_at)->count();
+                $totalCount = User::where('id', '>', $user->id)->count();
 
                 // $totalCount = $userCountDate;
 
-                $totalCount = User::where('usertype', 'user')
-                    ->where('id', '>', $user->id)
-                    ->count();
+                $totalCountusers = User::where('usertype', 'user')
+    ->where('id', '>', $user->id)
+    ->count();
 
                 // Assuming you have a variable $value that represents the user's value
 
@@ -130,7 +131,7 @@ class HomeController extends Controller
 
 
 
-                return view('dashboard', compact('course_name', 'about_course', 'N',  'contactCount', 'course', 'userCount', 'totalCount', 'WalletAmount', 'commissionPercentage', 'level', 'service', 'serial_number'));
+                return view('dashboard', compact('course_name', 'about_course', 'N',  'contactCount', 'course', 'userCount', 'totalCount', '', 'WalletAmount', 'commissionPercentage', 'level', 'service', 'serial_number'));
             } elseif ($usertype == 'admin') {
                 $totalUsers = User::where('usertype', 'user')->count();
                 $totalContacts = Contact::count();

@@ -56,12 +56,13 @@ class HomeController extends Controller
 
 
                 // $contactCountDate = Contact::where('created_at', '>', $user->created_at)->count();
+                $totalCount = User::where('id', '>', $user->id)->count();
 
                 // $totalCount = $userCountDate;
 
-                $totalCount = User::where('usertype', 'user')
-                    ->where('id', '>', $user->id)
-                    ->count();
+                $totalCountusers = User::where('usertype', 'user')
+    ->where('id', '>', $user->id)
+    ->count();
 
                 // Assuming you have a variable $value that represents the user's value
 
