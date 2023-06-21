@@ -1193,7 +1193,7 @@ class DashboardController extends Controller
     }
 
 
-    public function Deactivate($id)
+    public function deactivate($id)
     {
         $user = User::findOrFail($id);
         $user->deactivated_at = now();
@@ -1205,10 +1205,10 @@ class DashboardController extends Controller
     public function Activate($id)
     {
         $user = User::findOrFail($id);
-        $user->deactivated_at = NULL;
+        $user->deactivated_at = now();
         $user->save();
 
-        return redirect()->back()->with('success', 'User has been re-activated.');
+        return redirect()->back()->with('success', 'User has been deactivated.');
     }
 
     public function deactivateAccount(Request $request)

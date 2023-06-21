@@ -69,7 +69,7 @@
                                         </a>
                                     </div>
                                     <!--end::Menu item -->
-                                    @endif
+                                    
                                     <span class="menu-link"><span class="menu-icon"><i class="ki-duotone ki-educare fs-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i></span><span class="menu-title">User Management</span></span>
 
                                     <!-- begin::Menu item-->

@@ -128,7 +128,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/course/{id}', [DashboardController::class, 'courseShow'])->name('course.view');
     Route::delete('course/{contact}', [DashboardController::class, 'CourseDestroy'])->name('course.destroy');
     Route::post('/users/{id}/deactivate', [DashboardController::class, 'Deactivate'])->name('users.deactivate');
-    Route::post('/users/{id}/activate', [DashboardController::class, 'Activate'])->name('users.activate');
+    Route::post('/users/{id}/activate', [DashboardController::class, 'activate'])->name('users.deactivate');
 });
 
 

@@ -595,19 +595,19 @@
                                                 </form>
                                             </div>
                                             <!--end::Menu item-->
-                                            @else
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <form action="{{ route('users.activate', ['id' => $contact->id]) }}" method="POST">
+@else
+<!--begin::Menu item-->
+<div class="menu-item px-3">
+                                                <form action="{{ route('users.deactivate', ['id' => $contact->id]) }}" method="POST">
                                                     @csrf
                                                     @method('POST')
-                                                    <button type="submit" class="menu-link px-3" onclick="return confirm('Are you sure you want to activate this user?')" style="background-color: transparent; border-color: transparent;">
+                                                    <button type="submit" class="menu-link px-3" onclick="return confirm('Are you sure you want to deactivate this user?')" style="background-color: transparent; border-color: transparent;">
                                                         Activate
                                                     </button>
                                                 </form>
                                             </div>
                                             <!--end::Menu item-->
-                                            @endif
+@endif
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
                                                 <form action="{{ route('users.destroy', ['id' => $contact->id]) }}" method="POST">

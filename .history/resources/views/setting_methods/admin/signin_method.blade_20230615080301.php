@@ -109,7 +109,7 @@
 
                 <!--begin::Action-->
                 <div id="kt_signin_password_button" class="ms-auto">
-                    <a href="{{ route('password.request')}}" class="btn btn-light btn-active-light-primary">Reset Password</a>
+                    <a href="{{ route('pass.reset', ['token' => 36272727])}}" class="btn btn-light btn-active-light-primary">Reset Password</a>
                 </div>
                 <!--end::Action-->
             </div>
