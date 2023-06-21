@@ -29,8 +29,8 @@
 
 
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="{{ assets('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ assets(css/style.bundle.css) }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
 
     <!--Begin::Google Tag Manager -->
@@ -96,13 +96,13 @@
                 <div class="d-flex flex-column flex-center p-6 p-lg-10 w-100">
                     <!--begin::Logo-->
                     <a href="../../../index.html" class="mb-0 mb-lg-20">
-                        <img alt="Logo" src="../../../assets/media/logos/default-white.svg" class="h-40px h-lg-50px" />
+                        <img alt="Logo" src="{{ asset('media/logos/default-white.svg') }}" class="h-40px h-lg-50px" />
                     </a>
                     <!--end::Logo-->
 
                     <!--begin::Image-->
                     <img class="d-none d-lg-block mx-auto w-300px w-lg-75 w-xl-500px mb-10 mb-lg-20"
-                        src="../../../assets/media/misc/auth-screens.png" alt="" />
+                        src="{{ asset('media/logos/.png') }}" alt="" />
                     <!--end::Image-->
 
 
@@ -127,12 +127,12 @@
 
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{ asset('plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ assets('js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
 
 
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="{{ assets('js/custom/authentication/sign-in/general.js') }}"></script>
+    <script src="{{ asset('js/custom/authentication/sign-in/general.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 

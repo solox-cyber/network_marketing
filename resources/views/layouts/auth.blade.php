@@ -91,18 +91,18 @@
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <!--begin::Aside-->
             <div class="d-flex flex-lg-row-fluid w-lg-50 bgi-size-cover  bgi-position-center"
-                style="background-image: url(media/misc/auth-bg.png)">
+                style="background-image: url(media/misc/auth-bgg.png)">
                 <!--begin::Content-->
                 <div class="d-flex flex-column flex-center p-6 p-lg-10 w-100">
                     <!--begin::Logo-->
-                    <a href="../../../index.html" class="mb-0 mb-lg-20">
+                    <!-- <a href="../../../index.html" class="mb-0 mb-lg-20">
                         <img alt="Logo" src="{{ asset('media/logos/default-white.svg') }}" class="h-40px h-lg-50px" />
-                    </a>
+                    </a> -->
                     <!--end::Logo-->
 
                     <!--begin::Image-->
                     <img class="d-none d-lg-block mx-auto w-300px w-lg-75 w-xl-500px mb-10 mb-lg-20"
-                        src="{{ asset('media/misc/auth-screens.png') }}" alt="" />
+                        src="{{ asset('media/logos/lern-auth.png') }}" alt="" />
                     <!--end::Image-->
 
 
