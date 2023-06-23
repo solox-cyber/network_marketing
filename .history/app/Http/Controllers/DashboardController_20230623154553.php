@@ -1087,11 +1087,12 @@ class DashboardController extends Controller
     $course->course_name = $request->input('course_name');
     $course->tuition_fee = $request->input('tuition_fee');
     $course->about_course = $request->input('about_course');
-    $course->instructor_name = $request->input('instructor_name');
-    $course->start_date = $request->input('start_date');
-    $course->course_syllabus = $request->input('course_syllabus');
-    $course->instructor_bio = $request->input('instructor_bio');
-    $course->other_information = $request->input('other_information');
+    $course->instructor_name = $request->input('about_course');
+    '' => 'nullable|string',
+    'start_date' => 'nullable|date',
+    'course_syllabus' => 'nullable|string',
+    'instructor_bio' => 'nullable|string',
+    'other_information' => 'nullable|string',
     // Update other fields as needed
 
     // Update the course logo if a new image is provided
@@ -1119,7 +1120,7 @@ class DashboardController extends Controller
     $course->save();
 
     // Redirect back to the course details page
-    return redirect()->route('course.view', $id)->with('success', 'Course updated successfully');
+    return redirect()->route('courses.show', $id)->with('success', 'Course updated successfully');
 }
 
     public function search(Request $request)

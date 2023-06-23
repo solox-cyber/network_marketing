@@ -79,24 +79,8 @@
 
                             </div>
                             <!--end::Blog-->
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-
-                            @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                            @endif
-
                             <!--begin::Form-->
-                            <form action="{{ route('course.update', ['id' => $courses->id])  }}" class="form mb-15" method="POST" id="kt_careers_form" enctype="multipart/form-data">
+                            <form action="{{ route('courses.store') }}" class="form mb-15" method="POST" id="kt_careers_form" enctype="multipart/form-data">
                                 @csrf
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
@@ -109,9 +93,8 @@
                                         <!--begin::Image input-->
                                         <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('../assets/media/svg/avatars/blank.svg')">
                                             <!--begin::Preview existing avatar-->
-                                            @if($courses->course_logo)
-
-                                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ asset('storage/' . str_replace('public/', '', $courses->course_logo)) }}')">
+                                            @if(Auth::user()->profilePicture)
+                                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ asset('storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}')">
 
                                             </div>
                                             <!--end::Preview existing avatar-->
@@ -195,9 +178,8 @@
                                         <!--end::Label-->
 
                                         <!--begin::Input-->
-                                        <input class="form-control form-control-solid" type="date" placeholder="" value="{{ date('Y-m-d', strtotime($courses->start_date)) }}" name="start_date" />
+                                        <input class="form-control form-control-solid" type="date" placeholder="" value="{{ date('jS F, Y', strtotime($courses->start_date)) }}" name="start_date" />
                                         <!--end::Input-->
-
                                     </div>
                                     <!--end::Col-->
 
@@ -214,7 +196,7 @@
                                         <label class="required fs-5 fw-semibold mb-2">Instructor Name</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input class="form-control form-control-solid" type="text" placeholder="" value="{{ $courses->instructor_name }}" name="instructor_name" />
+                                    <input class="form-control form-control-solid" type="text" placeholder="" value="{{ $courses->instructor_name }}" name="instructor_name" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Col-->
@@ -231,8 +213,8 @@
                                         <label class="required fs-5 fw-semibold mb-2">Course Syllabus</label>
                                         <!--end::Label-->
 
-                                        <textarea class="form-control form-control-solid" rows="2" name="course_syllabus" placeholder="">{{ $courses->course_syllabus }}
-                                        </textarea>
+                                        <textarea class="form-control form-control-solid" rows="2" name="course_syllabus" placeholder="">
+        </textarea>
                                     </div>
                                     <!--end::Col-->
 
@@ -242,8 +224,8 @@
                                         <label class="required fs-5 fw-semibold mb-2">Instructor Bio</label>
                                         <!--end::Label-->
 
-                                        <textarea class="form-control form-control-solid" rows="2" name="instructor_bio" placeholder="">{{$courses->instructor_bio }}
-                                        </textarea>
+                                        <textarea class="form-control form-control-solid" rows="2" name="instructor_bio" placeholder="">
+        </textarea>
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -259,8 +241,8 @@
                                 <div class="d-flex flex-column mb-5">
                                     <label class="fs-6 fw-semibold mb-2">Other Information</label>
 
-                                    <textarea class="form-control form-control-solid" rows="2" name="other_information" placeholder=""> {{ $courses->other_information }}
-                                    </textarea>
+                                    <textarea class="form-control form-control-solid" rows="2" name="other_information" placeholder="">
+        </textarea>
                                 </div>
                                 <!--end::Input group-->
 
@@ -275,7 +257,7 @@
 
                                     <!--begin::Indicator label-->
                                     <span class="indicator-label">
-                                        Edit Course</span>
+                                        Add Course</span>
                                     <!--end::Indicator label-->
 
                                     <!--begin::Indicator progress-->

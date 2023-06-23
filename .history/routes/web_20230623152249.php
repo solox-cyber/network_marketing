@@ -129,7 +129,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('course/{contact}', [DashboardController::class, 'CourseDestroy'])->name('course.destroy');
     Route::post('/users/{id}/deactivate', [DashboardController::class, 'Deactivate'])->name('users.deactivate');
     Route::post('/users/{id}/activate', [DashboardController::class, 'Activate'])->name('users.activate');
-    Route::post('/course/{id}', [DashboardController::class, 'courseUpdate'])->name('course.update');
+    Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
 });
 
 

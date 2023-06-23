@@ -44,10 +44,10 @@ class UpdatePaymentStatusCommand extends Command
     public function handle()
     {
         $users = User::where('payment_status', 'pending')
-            ->where('usertype', 'user')
-            ->where('created_at', '<=', Carbon::now()->subHours(72))
-            ->get();
-
+        ->where('usertype', 'user')
+        ->where('created_at', '<=', Carbon::now()->subHours(72))
+        ->get();
+    
 
         foreach ($users as $user) {
             $user->payment_status = 'expired';

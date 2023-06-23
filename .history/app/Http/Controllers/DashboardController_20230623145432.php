@@ -552,9 +552,12 @@ class DashboardController extends Controller
     public function courseShow($id)
     {
         if (auth()->user()->usertype === 'admin') {
-                    $courses = Course::findOrFail($id);
-            return view('admin.course-edit', compact('courses'));
-
+            $salesReps = SalesRep::all();
+            $salesRep = SalesRep::findOrFail($id);
+            $numberOfContacts = $salesRep->contacts()->count();
+            $salescontacts = $salesRep->contacts()->get();
+            $contacts = Contact::all();
+            return view('admin.course-edit', compact('salesRep', 'salesReps', 'numberOfContacts', 'salescontacts', 'contacts'));
         }
     }
 
@@ -1065,63 +1068,6 @@ class DashboardController extends Controller
     //     return view('contacts_methods.search',compact('contacts'));
     // }
 
-    public function courseUpdate(Request $request, $id)
-{
-    $course = Course::findOrFail($id);
-
-    // Validate the input
-    $request->validate([
-        'course_logo' => 'nullable|image',
-        'about_course' => 'nullable|string',
-        'course_name' => 'nullable|string',
-        'tuition_fee' => 'nullable|string',
-        'instructor_name' => 'nullable|string',
-        'start_date' => 'nullable|date',
-        'course_syllabus' => 'nullable|string',
-        'instructor_bio' => 'nullable|string',
-        'other_information' => 'nullable|string',
-        // Add more validation rules as needed
-    ]);
-
-    // Update the course with the new data
-    $course->course_name = $request->input('course_name');
-    $course->tuition_fee = $request->input('tuition_fee');
-    $course->about_course = $request->input('about_course');
-    $course->instructor_name = $request->input('instructor_name');
-    $course->start_date = $request->input('start_date');
-    $course->course_syllabus = $request->input('course_syllabus');
-    $course->instructor_bio = $request->input('instructor_bio');
-    $course->other_information = $request->input('other_information');
-    // Update other fields as needed
-
-    // Update the course logo if a new image is provided
-    if ($request->hasFile('course_logo')) {
-        $image = $request->file('course_logo');
-
-        // Store the image and get the path
-        $path = $image->store('public/course_logo');
-
-        // Create or update the associated profile picture
-        if ($course->profilePicture) {
-            $course->profilePicture->path = $path;
-            $course->profilePicture->save();
-        } else {
-            $profilePicture = new ProfilePicture([
-                'path' => $path,
-                'imageable_id' => $course->id,
-                'imageable_type' => Course::class,
-            ]);
-            $course->profilePicture()->save($profilePicture);
-        }
-    }
-
-    // Save the updated course
-    $course->save();
-
-    // Redirect back to the course details page
-    return redirect()->route('course.view', $id)->with('success', 'Course updated successfully');
-}
-
     public function search(Request $request)
     {
         $searchKeyword = $request->input('search');
@@ -1252,7 +1198,7 @@ class DashboardController extends Controller
 
     public function logout()
     {
-    Auth::logout(); // Log out the authenticated user
+        Auth::logout(); // Log out the authenticated user
 
         // Perform any additional actions if needed
 

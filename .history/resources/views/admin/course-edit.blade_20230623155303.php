@@ -275,7 +275,7 @@
 
                                     <!--begin::Indicator label-->
                                     <span class="indicator-label">
-                                        Edit Course</span>
+                                        Add Course</span>
                                     <!--end::Indicator label-->
 
                                     <!--begin::Indicator progress-->

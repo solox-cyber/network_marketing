@@ -1091,7 +1091,8 @@ class DashboardController extends Controller
     $course->start_date = $request->input('start_date');
     $course->course_syllabus = $request->input('course_syllabus');
     $course->instructor_bio = $request->input('instructor_bio');
-    $course->other_information = $request->input('other_information');
+    $course->instructor_bio = $request->input('instructor_bio');
+    '' => 'nullable|string',
     // Update other fields as needed
 
     // Update the course logo if a new image is provided
@@ -1119,7 +1120,7 @@ class DashboardController extends Controller
     $course->save();
 
     // Redirect back to the course details page
-    return redirect()->route('course.view', $id)->with('success', 'Course updated successfully');
+    return redirect()->route('courses.show', $id)->with('success', 'Course updated successfully');
 }
 
     public function search(Request $request)

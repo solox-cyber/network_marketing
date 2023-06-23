@@ -1119,7 +1119,7 @@ class DashboardController extends Controller
     $course->save();
 
     // Redirect back to the course details page
-    return redirect()->route('course.view', $id)->with('success', 'Course updated successfully');
+    return redirect()->route('', $id)->with('success', 'Course updated successfully');
 }
 
     public function search(Request $request)

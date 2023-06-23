@@ -80,23 +80,23 @@
                             </div>
                             <!--end::Blog-->
                             @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-                            @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                            @endif
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
                             <!--begin::Form-->
-                            <form action="{{ route('course.update', ['id' => $courses->id])  }}" class="form mb-15" method="POST" id="kt_careers_form" enctype="multipart/form-data">
+                            <form action="{{ route('course.update') }}" class="form mb-15" method="POST" id="kt_careers_form" enctype="multipart/form-data">
                                 @csrf
                                 <!--begin::Input group-->
                                 <div class="row mb-6">
@@ -275,7 +275,7 @@
 
                                     <!--begin::Indicator label-->
                                     <span class="indicator-label">
-                                        Edit Course</span>
+                                        Add Course</span>
                                     <!--end::Indicator label-->
 
                                     <!--begin::Indicator progress-->
