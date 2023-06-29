@@ -72,25 +72,20 @@
                 <div class="card">
                     <!--begin::Card header-->
                     <div class="card-header border-0 pt-6">
-                        <!--begin::Card title-->
-                        <div class="card-title d-flex align-items-center">
-                            <!--begin::Search-->
-                            <div class="d-flex align-items-center position-relative my-1">
-                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"><span class="path1"></span><span class="path2"></span></i>
-                                <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user" />
-                            </div>
-                            <!--end::Search-->
+                       <!--begin::Card title-->
+<div class="card-title d-flex align-items-center">
+    <!--begin::Search-->
+    <div class="d-flex align-items-center position-relative my-1">
+        <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"><span class="path1"></span><span class="path2"></span></i>
+        <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user" />
+    </div>
+    <!--end::Search-->
 
-                            <!--begin::Button-->
-                            <div class="d-flex align-items-center position-relative my-1 ml-5">
-                                <a class="btn btn-primary ms-3" href="{{route('admin.setcommissions')}}">
-                                    <i class="fas fa-cogs me-2"></i> Set Commission Rate
-                                </a>
-
-                            </div>
-                            <!--end::Button-->
-                        </div>
-                        <!--end::Card title-->
+    <!--begin::Button-->
+    <button class="btn btn-primary ms-3">Set Commission Rate</button>
+    <!--end::Button-->
+</div>
+<!--end::Card title-->
 
 
                         <!--begin::Card toolbar-->

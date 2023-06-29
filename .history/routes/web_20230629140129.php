@@ -122,7 +122,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/users/search', [DashboardController::class, 'searchUsers'])->name('searchUsers');
     Route::get('/commissions', [DashboardController::class, 'commissions'])->name('admin.commissions');
     Route::get('/setcommission', [DashboardController::class, 'setcommissions'])->name('admin.setcommissions');
-    Route::post('/commission/update', [DashboardController::class, 'updateCommissionPercentage'])->name('commission.update');
     Route::get('/salesrep/commissions', [DashboardController::class, 'salescommissions'])->name('sales.commissions');
     Route::get('/commission/{id}', [DashboardController::class, 'commission'])->name('approve.commissions');
     Route::get('/user/{id}', [DashboardController::class, 'userview'])->name('userview');

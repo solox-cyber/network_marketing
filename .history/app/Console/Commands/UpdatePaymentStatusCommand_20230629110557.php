@@ -43,30 +43,22 @@ class UpdatePaymentStatusCommand extends Command
      */
     public function handle()
     {
-        $lastUserId = User::latest('id')->pluck('id')->first();
-
         $users = User::where('payment_status', 'pending')
             ->where('usertype', 'user')
             ->where('created_at', '<=', Carbon::now()->subHours(72))
             ->get();
 
+
         foreach ($users as $user) {
-            $user->id = $lastUserId + 1;
             $user->payment_status = 'expired';
             $user->deactivated_at = now();
             $user->save();
 
-            // Update the serial number
-            $user->serial_number = 'SN-' . ($lastUserId + 1);
-            $user->save();
-
             // Send the account expiration email
             $this->sendAccountExpiredEmail($user);
-
-            $lastUserId++;
         }
 
-        $this->info('Payment status and serial numbers updated successfully.');
+        $this->info('Payment status updated successfully.');
     }
 
     private function sendAccountExpiredEmail(User $user)

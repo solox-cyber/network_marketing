@@ -83,10 +83,7 @@
 
                             <!--begin::Button-->
                             <div class="d-flex align-items-center position-relative my-1 ml-5">
-                                <a class="btn btn-primary ms-3" href="{{route('admin.setcommissions')}}">
-                                    <i class="fas fa-cogs me-2"></i> Set Commission Rate
-                                </a>
-
+                            <button class="btn btn-primary ms-3">Set Commission Rate</button>
                             </div>
                             <!--end::Button-->
                         </div>

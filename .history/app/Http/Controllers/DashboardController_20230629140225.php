@@ -168,8 +168,8 @@ class DashboardController extends Controller
 
 
 
-                $commissionPercentage = $user->commission_percentage;
-                $WalletAmountGross = ($pay * ($commissionPercentage / 100)) * $totalUsers;
+                    $commissionPercentage = $user->commission_percentage;
+                    $WalletAmountGross = ($pay * ($commissionPercentage / 100))*$totalUsers;
 
 
 
@@ -195,7 +195,7 @@ class DashboardController extends Controller
                 $user->commission_status = 'pending';
                 $user->save();
 
-                return view('salesdash', compact('totalUsers', 'totalContacts', 'Contacts', 'WalletAmount'));
+                return view('salesdash', compact('totalUsers', 'totalContacts', 'Contacts','WalletAmount'));
             } else {
                 return redirect()->back();
             }
@@ -536,21 +536,8 @@ class DashboardController extends Controller
         return redirect()->back()->with('error', 'You do not have permission to access this page.');
     }
 
-    public function setcommissions()
-    {
-        $commissionPercentage = User::where('usertype', 'salesrep')->value('commission_percentage');
-
-        return view('admin.set-commission', compact('commissionPercentage'));
-    }
-
-
-    public function updateCommissionPercentage(Request $request)
-    {
-        $commissionPercentage = $request->input('commission_percentage');
-
-        User::where('usertype', 'salesrep')->update(['commission_percentage' => $commissionPercentage]);
-
-        return redirect()->back()->with('success', 'Commission percentage updated successfully.');
+    public function setcommissions(){
+        return view('admin.set-commission');
     }
 
     public function commissions()
@@ -1415,30 +1402,30 @@ class DashboardController extends Controller
 
 
 
-        $pay = 100000;
+                $pay = 100000;
 
-        $totalUsers = User::where('sales_rep_id', Auth::user()->id)->count();
+                $totalUsers = User::where('sales_rep_id', Auth::user()->id)->count();
 
-        $commissionPercentage = $user->commission_percentage;
-        $WalletAmountGross = ($pay * ($commissionPercentage / 100)) * $totalUsers;
+                    $commissionPercentage = $user->commission_percentage;
+                    $WalletAmountGross = ($pay * ($commissionPercentage / 100))*$totalUsers;
 
 
 
-        // Get the total withdraw request count
-        $totalWithdrawRequests = SalesWallet::where('user_id', $user->id)
-            ->where('type', 'withdrawal')->count();
+                // Get the total withdraw request count
+                $totalWithdrawRequests = SalesWallet::where('user_id', $user->id)
+                    ->where('type', 'withdrawal')->count();
 
-        $paymentStatus = SalesWallet::where('user_id', $user->id)
-            ->where('type', 'withdrawal')
-            ->where('payment_status', 'Paid')
-            ->sum('amount');
+                $paymentStatus = SalesWallet::where('user_id', $user->id)
+                    ->where('type', 'withdrawal')
+                    ->where('payment_status', 'Paid')
+                    ->sum('amount');
 
-        // Check if the payment status is verified
-        if ($paymentStatus > 0) {
-            $WalletAmount = $WalletAmountGross - $paymentStatus;
-        } else {
-            $WalletAmount = $WalletAmountGross;
-        }
+                // Check if the payment status is verified
+                if ($paymentStatus > 0) {
+                    $WalletAmount = $WalletAmountGross - $paymentStatus;
+                } else {
+                    $WalletAmount = $WalletAmountGross;
+                }
 
 
         $balance = $user->wallet_amount;
