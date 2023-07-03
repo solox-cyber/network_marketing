@@ -45,7 +45,7 @@
                         <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('../assets/media/svg/avatars/blank.svg')">
                             <!--begin::Preview existing avatar-->
                             @if(Auth::user()->profilePicture)
-                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ asset('storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}')">
+                            <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{ asset('public/storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}')">
 
                             </div>
                             <!--end::Preview existing avatar-->
@@ -616,7 +616,7 @@
                 </div>
 
 
-                
+
 
 
             </div>

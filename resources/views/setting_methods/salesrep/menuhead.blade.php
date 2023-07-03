@@ -46,7 +46,7 @@
 
                 <div class="symbol symbol-65px symbol-lg-90px symbol-fixed position-relative mt-n3">
                     @if(Auth::user()->profilePicture)
-                    <img src="{{ asset('storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}" alt="user" class="border border-white border-4" style="border-radius: 20px;" />
+                    <img src="{{ asset('public/storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}" alt="user" class="border border-white border-4" style="border-radius: 20px;" />
 
                     @else
                     <div class="symbol symbol-100px">

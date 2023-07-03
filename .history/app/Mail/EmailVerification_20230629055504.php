@@ -44,7 +44,7 @@ class EmailVerification extends Mailable
 
     public function toMail($notifiable)
     {
-        $verificationUrl = $this->verificationUrl($notifiable);
+        $verificationUrl = $this->($notifiable);
         $serialNumber = $notifiable->serial_number;
         $name = $notifiable->name;
 

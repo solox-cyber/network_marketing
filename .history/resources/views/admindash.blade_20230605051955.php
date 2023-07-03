@@ -85,7 +85,7 @@
                                         <div class="col-md-4 col-sm-12">
                                             <div class="symbol symbol-65px symbol-lg-90px symbol-fixed position-relative mt-n3">
                                                 @if(Auth::user()->profilePicture)
-                                                <img src="{{ asset('storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}" alt="user" class="border border-white border-4" style="border-radius: 20px;" />
+                                                <img src="{{ asset('public/storage/' . str_replace('public/', '', Auth::user()->profilePicture->path)) }}" alt="user" class="border border-white border-4" style="border-radius: 20px;" />
 
                                                 @else
                                                 <div class="symbol symbol-100px">
@@ -99,7 +99,7 @@
                                         <div class="col-md-8 col-sm-12">
                                             <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2 col-sm-12 col-md-12">
 
-                                                User Level: 
+                                                User Level:
                                             </span>
                                             <!--end::Amount-->
                                             <br>
