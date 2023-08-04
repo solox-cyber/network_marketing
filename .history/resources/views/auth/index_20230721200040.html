@@ -1,0 +1,15 @@
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('b3591ef119a7e34f2755', {
+        cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('popup-channel');
+    channel.bind('user-register', function(data) {
+        alert(JSON.stringify(data));
+    });
+</script>

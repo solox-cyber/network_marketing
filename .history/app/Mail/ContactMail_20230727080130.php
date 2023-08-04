@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Mail;
+
+use App\Models\Contact;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+
+class ContactMail extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $contact;
+    public $contactId;
+    public $salesId;
+
+    /**
+     * Create a new message instance.
+     *
+     * @param  Contact  $contact
+     * @param  int  $contactId
+     * @param  int  $salesId
+     * @return void
+     */
+    public function __construct(Contact $user, $contactId, $salesId)
+    {
+        $this->user = $user;
+        $this->contactId = $contactId;
+        $this->salesId = $salesId;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        $registrationLink = url('register', ['contact_id' => $this->contactId, 'sales_id' => $this->salesId]);
+
+        return $this->view('emails.contact_mail')
+                    ->with([
+                        'user' => $this->user,
+                        'registrationLink' => $registrationLink,
+                    ])
+                    ->subject('Registration Payment Link');
+    }
+}

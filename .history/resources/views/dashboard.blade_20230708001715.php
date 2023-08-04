@@ -302,6 +302,7 @@ use Torann\GeoIP\Services\IPApi;
                                 @foreach($courseDetails as $course)
                                 @php
                                 $ipAddress = '102.89.46.250';
+                                
                                         $location = Location::get($ipAddress);
                                         $currencySymbol = ($location->countryCode === 'NG') ? 'NGN' : 'USD';
                                 if ($location->countryCode === 'NG') {

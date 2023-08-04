@@ -9,7 +9,7 @@
     <title>Lern.Africa</title>
     <meta charset="utf-8" />
     <meta name="description" content="The most advanced Bootstrap Admin Theme on Bootstrap Market trusted by over 4,000 beginners and professionals. Multi-demo, Dark Mode, RTL support. Grab your copy now and get life-time updates for free." />
-    <meta name="keywords" content="keen, bootstrap, bootstrap 5, bootstrap 4, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+    <meta name="keywords" content="Lern.Africa, tech education, tech courses, online learning, web development, programming, data science, artificial intelligence, machine learning, cybersecurity, digital marketing, UX/UI design, video tutorials, online courses, e-learning, IT training, tech career, software development, coding bootcamp, tech skills, online education, tech videos, coding tutorials, technology learning, software engineering, tech enthusiasts" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- CSRF Token -->
